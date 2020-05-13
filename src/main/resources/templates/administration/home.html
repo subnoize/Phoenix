@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>Phoenix Administraion</title>
+</head>
+<body>
+	<h1>Hello world!</h1>
+	<div sec:authorize="hasRole('ROLE_ADMIN')">You are Admin!</div>
+	<div sec:authorize="hasRole('ROLE_USER')">You are User!</div>
+	
+	Logged user: <span sec:authentication="name">Bob</span>
+	Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>
+</body>
+</html>
