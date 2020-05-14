@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<style>
+body {
+	font-family: Arial, Helvetica, Verdana;
+	font-size: 12px;
+	text-align: left;
+	margin: 0 auto;
+}
+
+#sn_page {
+  display: flex;
+  flex-flow: column;
+  margin: auto;
+  margin-top: 10px;
+  width: 900px;
+  border: 1px solid #EEE;
+  padding: 1px;
+}
+
+#sn_page #sn_header {
+	background-color: red;
+	flex: 0 1 100px;
+}
+
+#sn_page #sn_body {
+	display: flex;
+}
+
+#sn_page #sn_footer {
+	flex: 0 1 auto;
+	background-color: pink;
+	text-align: center;
+}
+
+#sn_page #sn_body > #sn_menu {
+	background-color: green;
+	width: 215px;
+}
+
+#sn_page #sn_body > #sn_content {
+	width: calc(100% - 215px);
+	background-color: blue;
+}
+
+		</style>
+	</head>
+	<body>
+		<div id="sn_page">
+			<div id="sn_header">subnoize llc</div>
+			<div id="sn_body">
+				<div id="sn_menu">
+					Menu
+					<br/>
+					1
+					<br/>
+					2
+					<br/>
+					2
+					<br/>
+					3
+					<br/>
+					4
+				</div>
+				<div id="sn_content">
+					Content
+				</div>
+			</div>
+			<div id="sn_footer">&copy;2020 subnoize llc, all rights reserved.</div>
+		</div>
+	</body>
+</html>

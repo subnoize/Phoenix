@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<link rel="stylesheet" href="/style/base.css">
+<head>
+<title>Users</title>
+<link rel="stylesheet" href="/style/base.css">
+</head>
+<body>
+	<div id="sn_page">
+		<div id="sn_header">
+			<div th:replace="fragments/header :: header">My header</div>
+		</div>
+		<div id="sn_body">
+			<div id="menu"></div>
+			<div id="content"></div>
+		</div>
+		<div id="sn_footer">
+			<div th:replace="fragments/footer :: footer">My footer</div>
+		</div>
+	</div>
+</body>
+</html>

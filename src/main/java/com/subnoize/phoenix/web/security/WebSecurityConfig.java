@@ -23,6 +23,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().and().formLogin().loginPage("/login").permitAll()
 			.and().logout().permitAll();
 		
+		http.authorizeRequests().antMatchers("/splash").permitAll();
+		http.authorizeRequests().antMatchers("/style/**").permitAll();
+
 		http.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN")
 		.antMatchers("/test/whoami").hasAuthority("READ_PRIVILEGE");
 		

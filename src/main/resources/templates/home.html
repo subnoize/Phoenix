@@ -2,19 +2,34 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="https://www.thymeleaf.org"
 	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<link rel="stylesheet" href="/style/base.css">
 <head>
 <title>Phoenix Administration</title>
 </head>
 <body>
-	<div sec:authorize="isAuthenticated()">
-		<h1>Welcome!</h1>
 
-		This content is only shown to authenticated users.
-		<div sec:authorize="hasRole('ROLE_ADMIN')">
-			<a th:href="@{/administration/home}">Admin Tools</a>
+	<div id="sn_page">
+		<div id="sn_header">
+			<div th:replace="fragments/header :: header">My header</div>
 		</div>
-		<div sec:authorize="hasRole('ROLE_USER')">This content is only
-			shown to users.</div>
+		<div id="sn_body">
+			<div id="content">
+				<div sec:authorize="isAuthenticated()">
+					<h1>Welcome!</h1>
+
+					This content is only shown to authenticated users.
+					<div sec:authorize="hasRole('ROLE_ADMIN')">
+						<a th:href="@{/administration/home}">Admin Tools</a>
+					</div>
+					<div sec:authorize="hasRole('ROLE_USER')">This content is
+						only shown to users.</div>
+				</div>
+			</div>
+		</div>
+		<div id="sn_footer">
+			<div th:replace="fragments/footer :: footer">My header</div>
+		</div>
 	</div>
+
 </body>
 </html>

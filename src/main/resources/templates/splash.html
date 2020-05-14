@@ -3,14 +3,21 @@
 	xmlns:th="https://www.thymeleaf.org"
 	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-<title>Phoenix Administration</title>
+<title>Welcome!</title>
+<link rel="stylesheet" href="/style/base.css">
 </head>
 <body>
-	<div sec:authorize="isAuthenticated() == false">
-		Click <a th:href="@{/home}">here</a> to log in.
-	</div>
-	<div sec:authorize="isAuthenticated()">
-		Go to <a th:href="@{/home}">home</a>!
+	<div id="sn_page">
+		<div id="sn_header">
+			<div th:replace="fragments/header :: header">My header</div>
+		</div>
+		<div id="sn_body">
+			<div id="menu"></div>
+			<div id="content"></div>
+		</div>
+		<div id="sn_footer">
+			<div th:replace="fragments/footer :: footer">My header</div>
+		</div>
 	</div>
 </body>
 </html>
