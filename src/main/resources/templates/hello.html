@@ -12,8 +12,19 @@
 			<div th:replace="fragments/header :: header">My header</div>
 		</div>
 		<div id="sn_body">
-			<div id="menu"></div>
-			<div id="content">
+			<div class="navbar-collapse collapse" id="sn_menu">
+				<ul class="nav navbar-nav">
+					<li th:classappend="${module == 'home' ? 'active' : ''}"><a
+						href="#" th:href="@{/}">Home</a></li>
+					<li th:classappend="${module == 'account' ? 'active' : ''}"><a
+						href="#" th:href="@{/home}">Account</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li th:classappend="${module == 'logout' ? 'active' : ''}"><a
+						href="#" th:href="@{/login}">logout</a></li>
+				</ul>
+			</div>
+			<div id="sn_content">
 				<h1>Hello world!</h1>
 			</div>
 		</div>
