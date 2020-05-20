@@ -17,7 +17,7 @@
 			<div id="sn_content">
 				<div th:if="${param.error}">Invalid username and password.</div>
 				<div th:if="${param.logout}">You have been logged out.</div>
-				<form th:action="@{/login}" method="post">
+				<form id="sn_login" th:action="@{/login}" method="post">
 					<div>
 						<label> User Name: <input type="text" name="username" required/>
 						</label>
@@ -27,10 +27,11 @@
 						</label>
 					</div>
 					<div>
-						<input type="submit" value="Sign In" />
+						<input class="standardButton" type="submit" value="Sign In" />
 					</div>
 				</form>
-				<a th:href="@{/home}"><input type="submit" value="Go Back" /></a>
+				<br/>
+				<a th:href="@{/home}"><input class="standardButton" type="submit" value="Go Back" /></a>
 
 			</div>
 		</div>
