@@ -4,9 +4,11 @@
 <div th:fragment="header">
 	<script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
 	<script src="/webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script>
   		$( function() {
-    		$( "#accordion" ).accordion();
+    		$( "#accordion" ).accordion({collapsible: true});
+    		$( "input" ).checkboxradio();
   		} );
   	</script>
 	<link rel="stylesheet" href="/style/base.css">
