@@ -11,8 +11,28 @@
 			<div th:replace="fragments/header :: header">My header</div>
 		</div>
 		<div id="sn_body">
-			<div id="sn_menu"></div>
-			<div id="sn_content"></div>
+			<div id="sn_menu">
+				<div>
+					<div>
+						<a th:href="@{/}"><input class="menuButton" type="submit" value="Home"></a>
+					</div>
+					<div sec:authorize="isAuthenticated()">
+						<a th:href="@{/administration/home}"><input class="menuButton" type="submit" value="Account"></a>
+					</div>
+				</div>
+				<div>
+					<div>
+						<a href="#" th:href="@{/login}"
+							sec:authorize="isAuthenticated() == false"><input
+							class="menuButton" type="submit" value="Login"></a>
+						<form th:action="@{/logout}" method="post"
+							sec:authorize="isAuthenticated()">
+							<input class="menuButton" type="submit" value="Sign Out" />
+						</form>
+					</div>
+				</div>
+			</div>
+			<div id="sn_content"><h1>Work in Progress</h1></div>
 		</div>
 		<div id="sn_footer">
 			<div th:replace="fragments/footer :: footer">My footer</div>
