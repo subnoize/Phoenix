@@ -14,12 +14,11 @@
 			<div id="sn_menu">
 				<div>
 					<div>
-						<a th:href="@{/}"><input class="menuButton" type="submit"
-							value="Home"></a>
+						<a th:href="@{/}"><input class="menuButton" type="submit" value="Home"></a>
 					</div>
 					<div sec:authorize="isAuthenticated()">
-						<a th:href="@{/administration/home}"><input class="menuButton"
-							type="submit" value="Account"></a>
+						<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/administration/home}"><input class="menuButton" type="submit" value="Account"></a>
+						<a sec:authorize="hasRole('ROLE_USER')" th:href="@{/services/users}"><input class="menuButton" type="submit" value="Account"></a>
 					</div>
 				</div>
 				<div>
@@ -59,23 +58,23 @@
 							<fieldset>
     							<legend> Enabled: </legend>
     							<label for="radio-1">true</label>
-    							<input type="radio" name="enabled" id="radio-1">
+    							<input type="radio" name="enabled" id="radio-1" value="true" checked>
     							<label for="radio-2">false</label>
-    							<input type="radio" name="enabled" id="radio-2">
+    							<input type="radio" name="enabled" id="radio-2" value="false">
   							</fieldset>
   							<fieldset>
     							<legend> Locked: </legend>
     							<label for="radio-1">true</label>
-    							<input type="radio" name="locked" id="radio-1">
+    							<input type="radio" name="locked" id="radio-1" value="true">
     							<label for="radio-2">false</label>
-    							<input type="radio" name="locked" id="radio-2">
+    							<input type="radio" name="locked" id="radio-2" value="false" checked>
   							</fieldset>
   							<fieldset>
     							<legend> Expired: </legend>
     							<label for="radio-1">true</label>
-    							<input type="radio" name="expired" id="radio-1">
+    							<input type="radio" name="expired" id="radio-1" value="true">
     							<label for="radio-2">false</label>
-    							<input type="radio" name="expired" id="radio-2">
+    							<input type="radio" name="expired" id="radio-2" value="false" checked>
   							</fieldset>
 
 							<div>

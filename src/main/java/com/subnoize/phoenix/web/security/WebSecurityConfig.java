@@ -35,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/").permitAll();
 		http.authorizeRequests().antMatchers("/style/**").permitAll();
 
-		http.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN")
+		http.authorizeRequests().antMatchers("/administration/**").hasRole("ADMIN")
 		.antMatchers("/test/whoami").hasAuthority("READ_PRIVILEGE");
 		
 		http.authorizeRequests().anyRequest().authenticated();
