@@ -27,7 +27,7 @@ public class UserDAO {
 	public void create(User user) {
 		String enc = passwdenc.encode(user.getPassword());
 		user.setPassword(enc);
-		user.setEnabled(true);
+		user.setExpired(false);
 		user.setDateCreated(System.currentTimeMillis());
 		mapper.save(user);
 
