@@ -23,6 +23,7 @@
 						<p>Hello! This is a work in progress Accordion for adding
 							users!</p>
 						<div th:if="${param.error}">Invalid data.</div>
+						<div th:if="${param.submit}">User creation successful.</div>
 						<form th:action="@{/administration/createUser}" method="POST">
 
 							<div>
