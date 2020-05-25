@@ -42,6 +42,10 @@ public class UserDAO {
 	public UserRoles retrieveRoles(User user) {
 		return mapper.load(UserRoles.class, user.getUsername());
 	}
+	
+	public void addUserRole(UserRoles userRole) {
+		mapper.save(userRole);
+	}
 
 	public void update(User user) {
 		mapper.save(user);

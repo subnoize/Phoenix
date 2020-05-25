@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.subnoize.phoenix.aws.dynamodb.User;
 import com.subnoize.phoenix.aws.dynamodb.UserDAO;
+import com.subnoize.phoenix.aws.dynamodb.UserRoles;
 
 @Controller
 @RequestMapping(value = "/administration")
@@ -39,6 +40,15 @@ public class AdministrationController {
 		return mav;
 	}
 	
-	
+	@PostMapping(path = "/createUserRole")
+	public ModelAndView createUserRole(SecurityContextHolderAwareRequestWrapper requestWrapper, UserRoles userRole) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		if (requestWrapper.isUserInRole("ADMIN")) {
+				mav.setViewName("/administration/home.html");
+				userDAO.addUserRole(userRole);
+				mav.addObject("user_roles", userRole);
+			}
+		return mav;
+	}
 
 }
