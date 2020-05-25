@@ -27,7 +27,7 @@ public class UserDAO {
 	public void create(User user) {
 		String enc = passwdenc.encode(user.getPassword());
 		user.setPassword(enc);
-		user.setEnabled(true);
+		user.setExpired(false);
 		user.setDateCreated(System.currentTimeMillis());
 		mapper.save(user);
 
@@ -41,6 +41,10 @@ public class UserDAO {
 
 	public UserRoles retrieveRoles(User user) {
 		return mapper.load(UserRoles.class, user.getUsername());
+	}
+	
+	public void addUserRole(UserRoles userRole) {
+		mapper.save(userRole);
 	}
 
 	public void update(User user) {
