@@ -7,6 +7,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
+import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedScanList;
 
 
 /**
@@ -45,6 +47,10 @@ public class UserDAO {
 	
 	public void addUserRole(UserRoles userRole) {
 		mapper.save(userRole);
+	}
+	
+	public PaginatedScanList<User> scanUserTable() {
+		return mapper.scan(User.class, new DynamoDBScanExpression());
 	}
 
 	public void update(User user) {

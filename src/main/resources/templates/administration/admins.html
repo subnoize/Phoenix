@@ -63,8 +63,23 @@
 						<p>Hello! This is a work in progress Accordion for editing
 							users!</p>
 							
-						<div>
-							
+						<div id="userList">
+							<table id="userTable">
+								<tr>
+									<th>Username</th>
+									<th>Date Created</th>
+									<th>Enabled</th>
+									<th>Expired</th>
+									<th>Locked</th>
+								</tr>
+								<tr th:each = "userList: ${userList}">
+									<td th:text="${userList.username}">test</td>
+									<td th:text="${userList.dateCreated}">test</td>
+									<td th:text="${userList.enabled}">test</td>
+									<td th:text="${userList.expired}">test</td>
+									<td th:text="${userList.locked}">test</td>
+								</tr>
+							</table>
 						</div>
 					</div>
 				</div>

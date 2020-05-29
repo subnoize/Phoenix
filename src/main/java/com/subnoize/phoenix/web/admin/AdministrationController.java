@@ -3,6 +3,7 @@ package com.subnoize.phoenix.web.admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,6 +20,16 @@ public class AdministrationController {
 	private UserDAO userDAO;
 	
 	// https://www.thymeleaf.org/doc/articles/springmvcaccessdata.html
+	
+	@GetMapping(path = "/admins")
+	public ModelAndView getUserTable(SecurityContextHolderAwareRequestWrapper requestWrapper) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		if (requestWrapper.isUserInRole("ADMIN")) {
+			mav.addObject("userList", userDAO.scanUserTable());
+		}
+		
+		return mav;
+	}
 
 	@PostMapping(path = "/createUser")
 	public ModelAndView createUser(SecurityContextHolderAwareRequestWrapper requestWrapper, User user) throws Exception {
