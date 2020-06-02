@@ -78,7 +78,7 @@
 									<td th:text="${userList.enabled}">test</td>
 									<td th:text="${userList.expired}">test</td>
 									<td th:text="${userList.locked}">test</td>
-									<td><input class="tableButton" type="submit" value="Edit"/></td>
+									<td><form><button class="tableButton" type="submit" value="${userList.username}">Edit</button></form></td>
 								</tr>
 							</table>
 						</div>
