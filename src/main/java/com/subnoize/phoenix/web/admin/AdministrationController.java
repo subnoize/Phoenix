@@ -61,5 +61,22 @@ public class AdministrationController {
 			}
 		return mav;
 	}
+	
+	@PostMapping(path = "/editUserInit")
+	public ModelAndView editUserInit(SecurityContextHolderAwareRequestWrapper requestWrapper, User user) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		if (requestWrapper.isUserInRole("ADMIN")) {
+			User tmp = userDAO.retrieve(user.getUsername());
+			if (tmp != null) {
+				mav.setViewName("/administration/badUser.html");
+				mav.addObject("user", user);
+				mav.addObject("error_message", "User does not exist.");
+			} else {
+				mav.setViewName("/administration/userEdit.html");
+				mav.addObject("userList", userDAO.retrieve(user.getUsername()));
+			}
+		}
+		return mav;
+	}
 
 }
