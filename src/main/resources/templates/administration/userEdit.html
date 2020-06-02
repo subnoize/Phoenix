@@ -36,8 +36,7 @@
     							<label for="radio-2">false</label>
     							<input type="radio" name="expired" id="radio-2" value="false" checked>
   							</fieldset>
-							<p>For accuracy reasons don't edit the username.</p>
-							<input type="text" name="username" th:value="${user.getUsername()}">
+							<input type="text" name="username" th:value="${user.getUsername()}" style="display:none;">
 					</fieldset>
 					<div>
 						<input class="standardButton" type="submit" value="Edit User" />
