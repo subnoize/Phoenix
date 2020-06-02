@@ -15,6 +15,27 @@
 				<form>
 					<fieldset>
 						<legend> Editing the User <span th:text="${user.getUsername()}">Test</span></legend>
+							<fieldset>
+    							<legend> Enabled: </legend>
+    							<label for="radio-1">true</label>
+    							<input type="radio" name="enabled" id="radio-1" value="true" checked>
+    							<label for="radio-2">false</label>
+    							<input type="radio" name="enabled" id="radio-2" value="false">
+  							</fieldset>
+  							<fieldset>
+    							<legend> Locked: </legend>
+    							<label for="radio-1">true</label>
+    							<input type="radio" name="locked" id="radio-1" value="true">
+    							<label for="radio-2">false</label>
+    							<input type="radio" name="locked" id="radio-2" value="false" checked>
+  							</fieldset>
+  							<fieldset>
+    							<legend> Expired: </legend>
+    							<label for="radio-1">true</label>
+    							<input type="radio" name="expired" id="radio-1" value="true">
+    							<label for="radio-2">false</label>
+    							<input type="radio" name="expired" id="radio-2" value="false" checked>
+  							</fieldset>
 							<p>For accuracy reasons don't edit the username.</p>
 							<input type="text" name="username" th:value="${user.getUsername()}">
 					</fieldset>
