@@ -5,6 +5,14 @@ body {
 	margin: 0 auto;
 }
 
+th {
+	border: 2px solid black;
+}
+
+td {
+	border: 1px solid black;
+}
+
 #sn_page {
   display: flex;
   flex-flow: column;

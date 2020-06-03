@@ -21,8 +21,7 @@
 							name="authorities" id="radio-1" value="ROLE_ADMIN"> <label
 							for="radio-2">User</label> <input type="radio" name="authorities"
 							id="radio-2" value="ROLE_USER" checked>
-							<p>For accuracy reasons don't edit the username.</p>
-							<input type="text" name="username" th:value="${user.getUsername()}">
+							<input type="text" name="username" th:value="${user.getUsername()}" style="display:none;">
 					</fieldset>
 					<div>
 						<input class="standardButton" type="submit" value="Set Role" />
