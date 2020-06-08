@@ -12,7 +12,7 @@
 		</div>
 		<div id="sn_body">
 			<div id="sn_content">
-				<form>
+				<form th:action="@{/administration/editUser}" method="POST">
 					<fieldset>
 						<legend> Editing <span th:text="${user.getUsername()}">Test</span></legend>
 							<fieldset>

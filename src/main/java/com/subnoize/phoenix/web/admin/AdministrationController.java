@@ -71,5 +71,16 @@ public class AdministrationController {
 		}
 		return mav;
 	}
+	
+	@PostMapping(path = "/editUser")
+	public ModelAndView editUser(SecurityContextHolderAwareRequestWrapper requestWrapper, User user) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		if (requestWrapper.isUserInRole("ADMIN")) {
+				mav.setViewName("/administration/admins.html");
+				userDAO.update(user);
+				mav.addObject("user", user);
+		}
+		return mav;
+	}
 
 }
