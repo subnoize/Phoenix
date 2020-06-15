@@ -18,6 +18,9 @@
 					type="submit" value="Account"></a> <a
 					sec:authorize="hasRole('ROLE_USER')" th:href="@{/services/users}"><input
 					class="menuButton" type="submit" value="Account"></a>
+					<div sec:authorize="hasRole('ROLE_ADMIN')">
+					<a th:href="@{/administration/admins}"><input class="menuButton" type="submit" value="Admin Tools" /></a>
+					</div>
 			</div>
 		</div>
 		<div>
