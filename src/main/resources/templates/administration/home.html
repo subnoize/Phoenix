@@ -20,14 +20,10 @@
 
 				Logged user: <span sec:authentication="name">Bob</span> Roles: <span
 					sec:authentication="principal.authorities">[ROLE_USER,
-					ROLE_ADMIN]</span>
-				<br/>
-				<div sec:authorize="hasRole('ROLE_ADMIN')">
-					<a th:href="@{/administration/createUser}"><input class="standardButton" type="submit" value="Create a User" /></a>
-					<br/>
-					<a th:href="@{/administration/editUser}"><input class="standardButton" type="submit" value="Edit a User" /></a>
-				</div>
-				
+					ROLE_ADMIN]</span> <br /> <a th:href="@{/administration/createUserHTML}"><input
+					class="standardButton" type="submit" value="Create a User" /></a> <br />
+				<a th:href="@{/administration/editUserHTML}"><input
+					class="standardButton" type="submit" value="Edit a User" /></a>
 			</div>
 		</div>
 		<div id="sn_footer">

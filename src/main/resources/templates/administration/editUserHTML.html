@@ -35,6 +35,8 @@
 									method="POST">
 									<input type="text" name="username"
 										th:value="${userList.username}" style="display: none;">
+										<input type="text" name="dateCreated"
+										th:value="${userList.dateCreated}" style="display: none;">
 									<button class="tableButton" type="submit">Edit</button>
 								</form></td>
 						</tr>
@@ -43,10 +45,9 @@
 			</div>
 
 		</div>
-	</div>
-	<div id="sn_footer">
-		<div th:replace="fragments/footer :: footer">My footer</div>
-	</div>
+		<div id="sn_footer">
+			<div th:replace="fragments/footer :: footer">My footer</div>
+		</div>
 	</div>
 </body>
 </html>

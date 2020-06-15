@@ -37,12 +37,13 @@
     							<input type="radio" name="expired" id="radio-2" value="false" checked>
   							</fieldset>
 							<input type="text" name="username" th:value="${user.getUsername()}" style="display:none;">
+							<input type="text" name="dateCreated" th:value="${user.getDateCreated()}" style="display: none;">
 					</fieldset>
 					<div>
 						<input class="standardButton" type="submit" value="Edit User" />
 					</div>
 				</form>
-				<a th:href="@{/administration/admins}"><input class="standardButton" type="submit" value="Go Back" /></a>
+				<a th:href="@{/administration/editUserHTML}"><input class="standardButton" type="submit" value="Go Back" /></a>
 			</div>
 		</div>
 		<div id="sn_footer">
