@@ -17,14 +17,12 @@
 			</div>
 			<div id="sn_content">
 				<div sec:authorize="isAuthenticated() == false">
-					<h1>Welcome!</h1>
+					<h1>Welcome to Phoenix Administration!</h1>
 					
 					Please sign in to get started.
 				</div>
 				<div sec:authorize="isAuthenticated()">
-					<h1>Welcome!</h1>
-
-					This content is only shown to authenticated users.
+					<h1>Welcome to Phoenix Administration!</h1>
 					<div sec:authorize="hasRole('ROLE_ADMIN')">
 						<a th:href="@{/administration/admins}"><input class="standardButton" type="submit" value="Admin Tools" /></a>
 					</div>
