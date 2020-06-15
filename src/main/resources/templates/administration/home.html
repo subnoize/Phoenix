@@ -23,8 +23,11 @@
 					ROLE_ADMIN]</span>
 				<br/>
 				<div sec:authorize="hasRole('ROLE_ADMIN')">
-					<a th:href="@{/administration/admins}"><input class="standardButton" type="submit" value="Admin Tools" /></a>
+					<a th:href="@{/administration/createUser}"><input class="standardButton" type="submit" value="Create a User" /></a>
+					<br/>
+					<a th:href="@{/administration/editUser}"><input class="standardButton" type="submit" value="Edit a User" /></a>
 				</div>
+				
 			</div>
 		</div>
 		<div id="sn_footer">

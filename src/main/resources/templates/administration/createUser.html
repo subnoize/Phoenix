@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>Admins</title>
+</head>
+<body>
+	<div id="sn_page">
+		<div id="sn_header">
+			<div th:replace="fragments/header :: header">My header</div>
+		</div>
+		<div id="sn_body">
+			<div id="sn_menu">
+				<div th:replace="fragments/menu :: menu">My menu</div>
+			</div>
+			<div id="sn_content">
+				<h1>Create a User</h1>
+				<div>
+					<div th:if="${param.error}">Invalid data.</div>
+					<div th:if="${param.submit}">User creation successful.</div>
+					<form th:action="@{/administration/createUser}" method="POST">
+
+						<div>
+							<label> User Name: <input type="text" name="username"
+								required />
+							</label>
+						</div>
+						<div>
+							<label> Password: <input type="password" name="password"
+								required />
+							</label>
+						</div>
+
+						<fieldset>
+							<legend> Enabled: </legend>
+							<label for="radio-1">true</label> <input type="radio"
+								name="enabled" id="radio-1" value="true" checked> <label
+								for="radio-2">false</label> <input type="radio" name="enabled"
+								id="radio-2" value="false">
+						</fieldset>
+						<fieldset>
+							<legend> Locked: </legend>
+							<label for="radio-1">true</label> <input type="radio"
+								name="locked" id="radio-1" value="true"> <label
+								for="radio-2">false</label> <input type="radio" name="locked"
+								id="radio-2" value="false" checked>
+						</fieldset>
+
+						<div>
+							<input class="standardButton" type="submit" value="Create User" />
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+		<div id="sn_footer">
+			<div th:replace="fragments/footer :: footer">My footer</div>
+		</div>
+	</div>
+</body>
+</html>
