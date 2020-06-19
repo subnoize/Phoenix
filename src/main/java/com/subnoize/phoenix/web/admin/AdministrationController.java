@@ -32,11 +32,11 @@ public class AdministrationController {
 	}
 	
 	@PostMapping(path = "/searchUserList")
-	public ModelAndView searchUserTable(SecurityContextHolderAwareRequestWrapper requestWrapper) throws Exception {
+	public ModelAndView searchUserTable(SecurityContextHolderAwareRequestWrapper requestWrapper, String username) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		if (requestWrapper.isUserInRole("ADMIN")) {
 			mav.setViewName("/administration/searchUserEdit.html");
-			mav.addObject("userList", userDAO.scanUserTable());
+			mav.addObject("userList", userDAO.listUsersByUsername(username));
 		}
 		
 		return mav;

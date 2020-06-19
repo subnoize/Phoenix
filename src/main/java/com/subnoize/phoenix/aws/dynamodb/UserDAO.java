@@ -1,5 +1,9 @@
 package com.subnoize.phoenix.aws.dynamodb;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -7,8 +11,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedScanList;
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
 
 /**
@@ -59,6 +65,18 @@ public class UserDAO {
 
 	public void delete(User user) {
 		mapper.delete(user);
+	}
+	
+	public List<User> listUsersByUsername(String username) {
+
+		Map<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
+        eav.put(":username", new AttributeValue().withS(username));
+
+        DynamoDBQueryExpression<User> queryExpression = new DynamoDBQueryExpression<User>()
+            .withKeyConditionExpression("contains(username, :username)").withExpressionAttributeValues(eav);
+
+        return mapper.query(User.class, queryExpression);
+		
 	}
 
 }
