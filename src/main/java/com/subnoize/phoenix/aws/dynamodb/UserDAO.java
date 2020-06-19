@@ -1,7 +1,6 @@
 package com.subnoize.phoenix.aws.dynamodb;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
@@ -11,11 +10,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedScanList;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
-
 
 /**
  * 
@@ -50,11 +47,11 @@ public class UserDAO {
 	public UserRoles retrieveRoles(User user) {
 		return mapper.load(UserRoles.class, user.getUsername());
 	}
-	
+
 	public void addUserRole(UserRoles userRole) {
 		mapper.save(userRole);
 	}
-	
+
 	public PaginatedScanList<User> scanUserTable() {
 		return mapper.scan(User.class, new DynamoDBScanExpression());
 	}
@@ -66,17 +63,19 @@ public class UserDAO {
 	public void delete(User user) {
 		mapper.delete(user);
 	}
-	
-	public List<User> listUsersByUsername(String username) {
 
-		Map<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
-        eav.put(":username", new AttributeValue().withS(username));
-
-        DynamoDBQueryExpression<User> queryExpression = new DynamoDBQueryExpression<User>()
-            .withKeyConditionExpression("contains(username, :username)").withExpressionAttributeValues(eav);
-
-        return mapper.query(User.class, queryExpression);
+	public PaginatedScanList<User> listUsersByUsername(String username) {
 		
+		Map<String, AttributeValue> eav = new HashMap<>();
+		eav.put(":username", new AttributeValue().withS(username));
+		DynamoDBScanExpression scanExpression = new DynamoDBScanExpression()
+				.withFilterExpression("begins_with(username, :username)").withExpressionAttributeValues(eav);
+
+		PaginatedScanList<User> paginatedList = mapper.scan(User.class, scanExpression);
+
+		paginatedList.forEach(u -> System.out.println(u.getUsername()));
+
+		return paginatedList;
 	}
 
 }
