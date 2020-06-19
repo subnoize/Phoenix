@@ -17,6 +17,14 @@
 			<div id="sn_content">
 				<h1>Edit User</h1>
 				<div id="userList">
+					<form th:action="@{/administration/searchUserList}" method="POST">
+						<p>Username:</p>
+						<input type="text" name="username" required>
+						<button class="tableButton" type="submit">Search</button>
+					</form>
+				</div>
+				<br/>
+				<div id="userList">
 					<table id="userTable">
 						<tr>
 							<th>Username</th>

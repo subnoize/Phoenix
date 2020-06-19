@@ -30,6 +30,17 @@ public class AdministrationController {
 		
 		return mav;
 	}
+	
+	@PostMapping(path = "/searchUserList")
+	public ModelAndView searchUserTable(SecurityContextHolderAwareRequestWrapper requestWrapper) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		if (requestWrapper.isUserInRole("ADMIN")) {
+			mav.setViewName("/administration/searchUserEdit.html");
+			mav.addObject("userList", userDAO.scanUserTable());
+		}
+		
+		return mav;
+	}
 
 	@PostMapping(path = "/createUser")
 	public ModelAndView createUser(SecurityContextHolderAwareRequestWrapper requestWrapper, User user) throws Exception {
