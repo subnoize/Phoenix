@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>Admins</title>
+</head>
+<body>
+	<div id="sn_page">
+		<div id="sn_header">
+			<div th:replace="fragments/header :: header">My header</div>
+		</div>
+		<div id="sn_body">
+			<div id="sn_menu">
+				<div th:replace="fragments/menu :: menu">My menu</div>
+			</div>
+			<div id="sn_content">
+				<h1>Edit User</h1>
+				
+				<div>
+					<a th:href="@{/administration/userList}"><input  class="menuButton" type="submit" value="View User List" /></a>
+					<a th:href="@{/administration/searchUserEdit}"><input  class="menuButton" type="submit" value="Search by Username" /></a>
+				</div>
+			</div>
+
+		</div>
+		<div id="sn_footer">
+			<div th:replace="fragments/footer :: footer">My footer</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -21,11 +21,22 @@ public class AdministrationController {
 	
 	// https://www.thymeleaf.org/doc/articles/springmvcaccessdata.html
 	
-	@GetMapping(path = "/editUserHTML")
+	@GetMapping(path = "/userList")
 	public ModelAndView getUserTable(SecurityContextHolderAwareRequestWrapper requestWrapper) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		if (requestWrapper.isUserInRole("ADMIN")) {
 			mav.addObject("userList", userDAO.scanUserTable());
+		}
+		
+		return mav;
+	}
+	
+	@PostMapping(path = "/searchUserList")
+	public ModelAndView searchUserTable(SecurityContextHolderAwareRequestWrapper requestWrapper, String username) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		if (requestWrapper.isUserInRole("ADMIN")) {
+			mav.setViewName("/administration/searchUserEdit.html");
+			mav.addObject("userList", userDAO.listUsersByUsername(username));
 		}
 		
 		return mav;
