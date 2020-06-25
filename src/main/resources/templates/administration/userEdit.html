@@ -18,7 +18,7 @@
 							<fieldset>
     							<legend> Enabled: </legend>
     							<label for="radio-1">true</label>
-    							<input type="radio" name="enabled" id="radio-1" value="true" checked>
+    							<input type="radio" name="enabled" id="radio-1" value="true">
     							<label for="radio-2">false</label>
     							<input type="radio" name="enabled" id="radio-2" value="false">
   							</fieldset>
@@ -27,14 +27,14 @@
     							<label for="radio-1">true</label>
     							<input type="radio" name="locked" id="radio-1" value="true">
     							<label for="radio-2">false</label>
-    							<input type="radio" name="locked" id="radio-2" value="false" checked>
+    							<input type="radio" name="locked" id="radio-2" value="false">
   							</fieldset>
   							<fieldset>
     							<legend> Expired: </legend>
     							<label for="radio-1">true</label>
     							<input type="radio" name="expired" id="radio-1" value="true">
     							<label for="radio-2">false</label>
-    							<input type="radio" name="expired" id="radio-2" value="false" checked>
+    							<input type="radio" name="expired" id="radio-2" value="false">
   							</fieldset>
 							<input type="text" name="username" th:value="${user.getUsername()}" style="display:none;">
 							<input type="text" name="dateCreated" th:value="${user.getDateCreated()}" style="display: none;">
