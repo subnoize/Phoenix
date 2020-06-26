@@ -18,12 +18,13 @@
 				<h1>Edit User</h1>
 				<div id="userList">
 					<form th:action="@{/administration/searchUserList}" method="POST">
-						<label> User Name: <input type="text" name="username" required/>
+						<label> User Name: <input type="text" name="username"
+							required />
 						</label>
 						<button class="tableButton" type="submit">Search</button>
 					</form>
 				</div>
-				<br/>
+				<br />
 				<div id="userList">
 					<table id="userTable">
 						<tr>
@@ -43,8 +44,14 @@
 									method="POST">
 									<input type="text" name="username"
 										th:value="${userList.username}" style="display: none;">
-										<input type="text" name="dateCreated"
+									<input type="text" name="dateCreated"
 										th:value="${userList.dateCreated}" style="display: none;">
+									<input type="text" name="enabled"
+										th:value="${userList.enabled}" style="display: none;">
+									<input type="text" name="expired"
+										th:value="${userList.expired}" style="display: none;">
+									<input type="text" name="locked" th:value="${userList.locked}"
+										style="display: none;">
 									<button class="tableButton" type="submit">Edit</button>
 								</form></td>
 						</tr>

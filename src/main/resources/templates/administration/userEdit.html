@@ -4,6 +4,8 @@
 	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
 <title>Phoenix Administraion</title>
+
+
 </head>
 <body>
 	<div id="sn_page">
@@ -18,23 +20,23 @@
 							<fieldset>
     							<legend> Enabled: </legend>
     							<label for="radio-1">true</label>
-    							<input type="radio" name="enabled" id="radio-1" value="true" checked>
+    							<input type="radio" name="enabled" id="radio-1" value="true" th:checked="${user.isEnabled()}">
     							<label for="radio-2">false</label>
-    							<input type="radio" name="enabled" id="radio-2" value="false">
+    							<input type="radio" name="enabled" id="radio-2" value="false" th:checked="${!user.isEnabled()}">
   							</fieldset>
   							<fieldset>
     							<legend> Locked: </legend>
     							<label for="radio-1">true</label>
-    							<input type="radio" name="locked" id="radio-1" value="true">
+    							<input type="radio" name="locked" id="radio-1" value="true" th:checked="${user.isLocked()}">
     							<label for="radio-2">false</label>
-    							<input type="radio" name="locked" id="radio-2" value="false" checked>
+    							<input type="radio" name="locked" id="radio-2" value="false" th:checked="${!user.isLocked()}">
   							</fieldset>
   							<fieldset>
     							<legend> Expired: </legend>
     							<label for="radio-1">true</label>
-    							<input type="radio" name="expired" id="radio-1" value="true">
+    							<input type="radio" name="expired" id="radio-1" value="true" th:checked="${user.isExpired()}">
     							<label for="radio-2">false</label>
-    							<input type="radio" name="expired" id="radio-2" value="false" checked>
+    							<input type="radio" name="expired" id="radio-2" value="false" th:checked="${!user.isExpired()}">
   							</fieldset>
 							<input type="text" name="username" th:value="${user.getUsername()}" style="display:none;">
 							<input type="text" name="dateCreated" th:value="${user.getDateCreated()}" style="display: none;">
