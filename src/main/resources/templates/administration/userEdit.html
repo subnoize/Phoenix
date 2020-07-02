@@ -39,8 +39,6 @@
     							<input type="radio" name="expired" id="radio-2" value="false" th:checked="${!user.isExpired()}">
   							</fieldset>
 							<input type="text" name="username" th:value="${user.getUsername()}" style="display:none;">
-							<input type="text" name="dateCreated" th:value="${user.getDateCreated()}" style="display: none;">
-							<input type="text" name="password" th:value="${user.getPassword()}" style="display: none;">
 					</fieldset>
 					<div>
 						<input class="standardButton" type="submit" value="Edit User" />

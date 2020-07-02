@@ -18,32 +18,34 @@ public class AdministrationController {
 
 	@Autowired
 	private UserDAO userDAO;
-	
+
 	// https://www.thymeleaf.org/doc/articles/springmvcaccessdata.html
-	
+
 	@GetMapping(path = "/userList")
 	public ModelAndView getUserTable(SecurityContextHolderAwareRequestWrapper requestWrapper) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		if (requestWrapper.isUserInRole("ADMIN")) {
 			mav.addObject("userList", userDAO.scanUserTable());
 		}
-		
+
 		return mav;
 	}
-	
+
 	@PostMapping(path = "/searchUserList")
-	public ModelAndView searchUserTable(SecurityContextHolderAwareRequestWrapper requestWrapper, String username) throws Exception {
+	public ModelAndView searchUserTable(SecurityContextHolderAwareRequestWrapper requestWrapper, String username)
+			throws Exception {
 		ModelAndView mav = new ModelAndView();
 		if (requestWrapper.isUserInRole("ADMIN")) {
 			mav.setViewName("/administration/searchUserEdit.html");
 			mav.addObject("userList", userDAO.listUsersByUsername(username));
 		}
-		
+
 		return mav;
 	}
 
 	@PostMapping(path = "/createUser")
-	public ModelAndView createUser(SecurityContextHolderAwareRequestWrapper requestWrapper, User user) throws Exception {
+	public ModelAndView createUser(SecurityContextHolderAwareRequestWrapper requestWrapper, User user)
+			throws Exception {
 		ModelAndView mav = new ModelAndView();
 		if (requestWrapper.isUserInRole("ADMIN")) {
 			User tmp = userDAO.retrieve(user.getUsername());
@@ -61,35 +63,39 @@ public class AdministrationController {
 		}
 		return mav;
 	}
-	
+
 	@PostMapping(path = "/createUserRole")
-	public ModelAndView createUserRole(SecurityContextHolderAwareRequestWrapper requestWrapper, UserRoles userRole) throws Exception {
+	public ModelAndView createUserRole(SecurityContextHolderAwareRequestWrapper requestWrapper, UserRoles userRole)
+			throws Exception {
 		ModelAndView mav = new ModelAndView();
 		if (requestWrapper.isUserInRole("ADMIN")) {
-				mav.setViewName("/administration/home.html");
-				userDAO.addUserRole(userRole);
-				mav.addObject("user_roles", userRole);
-			}
-		return mav;
-	}
-	
-	@PostMapping(path = "/editUserInit")
-	public ModelAndView editUserInit(SecurityContextHolderAwareRequestWrapper requestWrapper, User user) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		if (requestWrapper.isUserInRole("ADMIN")) {
-				mav.setViewName("/administration/userEdit.html");
-				mav.addObject("user", user);
+			mav.setViewName("/administration/home.html");
+			userDAO.addUserRole(userRole);
+			mav.addObject("user_roles", userRole);
 		}
 		return mav;
 	}
-	
+
+	@PostMapping(path = "/editUserInit")
+	public ModelAndView editUserInit(SecurityContextHolderAwareRequestWrapper requestWrapper, String username)
+			throws Exception {
+		ModelAndView mav = new ModelAndView();
+		if (requestWrapper.isUserInRole("ADMIN")) {
+			mav.setViewName("/administration/userEdit.html");
+			User user = userDAO.retrieve(username);
+			mav.addObject("user", user);
+		}
+		return mav;
+	}
+
 	@PostMapping(path = "/editUser")
 	public ModelAndView editUser(SecurityContextHolderAwareRequestWrapper requestWrapper, User user) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		if (requestWrapper.isUserInRole("ADMIN")) {
-				mav.setViewName("/administration/home.html");
-				userDAO.update(user);
-				mav.addObject("user", user);
+			mav.setViewName("/administration/home.html");
+			user.setPassword(null);
+			user.setDateCreated(null);
+			userDAO.updateNonNull(user);
 		}
 		return mav;
 	}
