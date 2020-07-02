@@ -1,20 +1,22 @@
 package com.subnoize.phoenix.aws.dynamodb;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverter;
 
-public class LocalDateTimeConverter implements DynamoDBTypeConverter<String, LocalDateTime> {
+public class LocalDateTimeConverter implements DynamoDBTypeConverter<Long, LocalDateTime> {
 
 	@Override
-	public String convert(final LocalDateTime time) {
+	public Long convert(final LocalDateTime time) {
 
-		return time.toString();
+		return time.atOffset(ZoneOffset.UTC).toInstant().toEpochMilli();
 	}
 
 	@Override
-	public LocalDateTime unconvert(final String stringValue) {
-
-		return LocalDateTime.parse(stringValue);
+	public LocalDateTime unconvert(final Long longValue) {
+		
+		return LocalDateTime.ofInstant(Instant.ofEpochMilli(longValue), ZoneOffset.UTC);
 	}
 }
