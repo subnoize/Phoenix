@@ -22,6 +22,7 @@
 				Logged user: <span sec:authentication="name">Bob</span> Roles: <span
 					sec:authentication="principal.authorities">[ROLE_USER,
 					ROLE_ADMIN]</span>
+				<div id="dateCreated"></div>
 				<br/>
 				<div sec:authorize="hasRole('ROLE_ADMIN')">
 					<a th:href="@{/administration/admins}"><input class="standardButton" type="submit" value="Admin Tools" /></a>

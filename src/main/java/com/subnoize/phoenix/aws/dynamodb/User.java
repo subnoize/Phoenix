@@ -3,6 +3,7 @@ package com.subnoize.phoenix.aws.dynamodb;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -84,6 +85,7 @@ public class User {
         this.locked = locked; 
     } 
  
+    @DynamoDBTypeConverted( converter = LocalDateTimeConverter.class )
     public long getDateCreated() { 
         return dateCreated; 
     } 
@@ -91,6 +93,5 @@ public class User {
     public void setDateCreated(long dateCreated) { 
         this.dateCreated = dateCreated; 
     } 
- 
 } 
  
