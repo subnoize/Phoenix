@@ -6,7 +6,7 @@ import java.time.ZoneOffset;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverter;
 
-public class LocalDateTimeConverter implements DynamoDBTypeConverter<Long, LocalDateTime> {
+public class DynamoDBLocalDateTimeConverter implements DynamoDBTypeConverter<Long, LocalDateTime> {
 
 	@Override
 	public Long convert(final LocalDateTime time) {

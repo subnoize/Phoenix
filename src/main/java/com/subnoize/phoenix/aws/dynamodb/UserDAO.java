@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedScanList;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
@@ -61,12 +62,17 @@ public class UserDAO {
 		mapper.save(user);
 	}
 
+	public void updateNonNull(User user) {
+		mapper.save(user,
+				new DynamoDBMapperConfig.Builder().withSaveBehavior(DynamoDBMapperConfig.SaveBehavior.UPDATE_SKIP_NULL_ATTRIBUTES).build());
+	}
+
 	public void delete(User user) {
 		mapper.delete(user);
 	}
 
 	public PaginatedScanList<User> listUsersByUsername(String username) {
-		
+
 		Map<String, AttributeValue> eav = new HashMap<>();
 		eav.put(":username", new AttributeValue().withS(username));
 		DynamoDBScanExpression scanExpression = new DynamoDBScanExpression()

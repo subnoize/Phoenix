@@ -26,25 +26,15 @@
 							<th>Locked</th>
 						</tr>
 						<tr th:each="userList: ${userList}">
-							<td th:text="${userList.username}">test</td>
-							<td th:text="${userList.dateCreated}">test</td>
-							<td th:text="${userList.enabled}">test</td>
-							<td th:text="${userList.expired}">test</td>
-							<td th:text="${userList.locked}">test</td>
-							<td><form th:action="@{/administration/editUserInit}"
-									method="POST">
-									<input type="text" name="username"
-										th:value="${userList.username}" style="display: none;">
-									<input type="text" name="dateCreated"
-										th:value="${userList.dateCreated}" style="display: none;">
-									<input type="text" name="enabled"
-										th:value="${userList.enabled}" style="display: none;">
-									<input type="text" name="expired"
-										th:value="${userList.expired}" style="display: none;">
-									<input type="text" name="locked" th:value="${userList.locked}"
-										style="display: none;">
+							<td th:text="${userList.username}">?</td>
+							<td th:text="${userList.dateCreated}">?</td>
+							<td th:text="${userList.enabled}">?</td>
+							<td th:text="${userList.expired}">?</td>
+							<td th:text="${userList.locked}">?</td>
+							<td><form th:action="@{/administration/editUserInit}" method="POST">
+									<input type="hidden" name="username" th:value="${userList.username}" style="display: none;">
 									<button class="tableButton" type="submit">Edit</button>
-								</form></td>
+							</form></td>
 						</tr>
 					</table>
 				</div>
