@@ -1,5 +1,6 @@
 package com.subnoize.phoenix.aws.dynamodb;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,7 +34,7 @@ public class UserDAO {
 		String enc = passwdenc.encode(user.getPassword());
 		user.setPassword(enc);
 		user.setExpired(false);
-		user.setDateCreated(System.currentTimeMillis());
+		user.setDateCreated(LocalDateTime.now());
 		mapper.save(user);
 
 	}
