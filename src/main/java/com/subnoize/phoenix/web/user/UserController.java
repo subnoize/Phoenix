@@ -1,7 +1,10 @@
 package com.subnoize.phoenix.web.user;
 
+import java.security.Principal;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,33 +20,43 @@ public class UserController {
 	@Autowired
 	private UserDAO userDAO;
 
+	@Autowired
+	private PasswordEncoder passwdenc;
+	
 	// https://www.thymeleaf.org/doc/articles/springmvcaccessdata.html
 
 	@PostMapping(path = "/changePassword")
-	public ModelAndView changePassword(SecurityContextHolderAwareRequestWrapper requestWrapper, User user, String password, String currentPassword, String confirmPassword) throws Exception {
+	public ModelAndView changePassword(final Principal principal, String password, String currentPassword,
+			String confirmPassword) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		if (requestWrapper.isUserInRole("ADMIN") || requestWrapper.isUserInRole("USER")) {
-			if (password == null || currentPassword == null || confirmPassword == null) {
+
+		principal.getName();
+
+		if (principal.equals(null)) {
+			mav.setViewName("/login.html");
+		}
+
+		else {
+
+			if (StringUtils.isBlank(confirmPassword) || StringUtils.isBlank(password) || StringUtils.isBlank(currentPassword)) {
 				mav.setViewName("/error.html");
-				user.setPassword("*****************");
-				mav.addObject("user", user);
 				mav.addObject("error_message", "Form field not filled out.");
-			}
-			else if (password == confirmPassword) {
+			} else if (!password.equals(confirmPassword)) {
 				mav.setViewName("/error.html");
-				user.setPassword("*****************");
-				mav.addObject("user", user);
-				mav.addObject("error_message", ".");
-			}
-			else {
+				mav.addObject("error_message", "Password and repeat password do not match.");
+			} else {
 				mav.setViewName("/services/home.html");
-				user.setUsername(null);
-				user.setDateCreated(null);
-				user.setEnabled((Boolean) null);
-				user.setExpired((Boolean) null);
-				user.setLocked((Boolean) null);
+				User user = userDAO.retrieve(principal.getName());
+				if (user.getPassword().equals(passwdenc.encode(currentPassword))) {
+					
+				}
+				else {
+					mav.setViewName("/error.html");
+					mav.addObject("error_message", "Incorrect Password.");
+				}
 				userDAO.updateNonNull(user);
 			}
+
 		}
 		return mav;
 	}
