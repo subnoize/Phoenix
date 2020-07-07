@@ -10,10 +10,6 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 
 /**
@@ -102,9 +98,5 @@ public class User {
     public void setDateCreated(LocalDateTime dateCreated) { 
         this.dateCreated = dateCreated; 
     }
-    
-    //public void setDateCreated(String dateString) {
-    //	this.dateCreated = LocalDateTime.parse(dateString);
-    //}
 } 
  

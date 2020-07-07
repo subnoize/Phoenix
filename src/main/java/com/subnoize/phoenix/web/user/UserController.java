@@ -22,23 +22,21 @@ public class UserController {
 
 	@Autowired
 	private PasswordEncoder passwdenc;
-	
+
 	// https://www.thymeleaf.org/doc/articles/springmvcaccessdata.html
 
 	@PostMapping(path = "/changePassword")
 	public ModelAndView changePassword(final Principal principal, String password, String currentPassword,
 			String confirmPassword) throws Exception {
 		ModelAndView mav = new ModelAndView();
-
-		principal.getName();
-
+		
 		if (principal.equals(null)) {
 			mav.setViewName("/login.html");
 		}
 
 		else {
-
-			if (StringUtils.isBlank(confirmPassword) || StringUtils.isBlank(password) || StringUtils.isBlank(currentPassword)) {
+			if (StringUtils.isBlank(confirmPassword) || StringUtils.isBlank(password)
+					|| StringUtils.isBlank(currentPassword)) {
 				mav.setViewName("/error.html");
 				mav.addObject("error_message", "Form field not filled out.");
 			} else if (!password.equals(confirmPassword)) {
@@ -47,14 +45,14 @@ public class UserController {
 			} else {
 				mav.setViewName("/services/home.html");
 				User user = userDAO.retrieve(principal.getName());
-				if (user.getPassword().equals(passwdenc.encode(currentPassword))) {
+				if (passwdenc.matches(currentPassword, user.getPassword())) {
 					
-				}
-				else {
+					userDAO.updatePassword(user,confirmPassword);
+					mav.setViewName("/services/home.html");
+				} else {
 					mav.setViewName("/error.html");
 					mav.addObject("error_message", "Incorrect Password.");
 				}
-				userDAO.updateNonNull(user);
 			}
 
 		}
