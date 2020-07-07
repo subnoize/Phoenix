@@ -76,7 +76,7 @@ public class AdministrationController {
 		return mav;
 	}
 
-	@PostMapping(path = "/editUserInit")
+	@PostMapping(path = "/editUserStartup")
 	public ModelAndView editUserInit(SecurityContextHolderAwareRequestWrapper requestWrapper, String username)
 			throws Exception {
 		ModelAndView mav = new ModelAndView();
@@ -99,5 +99,4 @@ public class AdministrationController {
 		}
 		return mav;
 	}
-
 }

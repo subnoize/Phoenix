@@ -39,6 +39,12 @@ public class UserDAO {
 		mapper.save(user);
 
 	}
+	
+	public void updatePassword(User user, String password) {
+		String enc = passwdenc.encode(password);
+		user.setPassword(enc);
+		mapper.save(user);
+	}
 
 	public User retrieve(String username) {
 		if (StringUtils.isEmpty(username))
