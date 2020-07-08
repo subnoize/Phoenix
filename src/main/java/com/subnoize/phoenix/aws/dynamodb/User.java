@@ -1,8 +1,13 @@
 package com.subnoize.phoenix.aws.dynamodb;
 
+import java.time.LocalDateTime;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -38,7 +43,7 @@ public class User {
  
     @JsonProperty("dateCreated") 
     @DynamoDBAttribute(attributeName = "dateCreated") 
-    private long dateCreated; 
+    private LocalDateTime dateCreated; 
  
     public User() { 
         // TODO Auto-generated constructor stub 
@@ -84,13 +89,14 @@ public class User {
         this.locked = locked; 
     } 
  
-    public long getDateCreated() { 
+    @DynamoDBTypeConverted( converter = DynamoDBLocalDateTimeConverter.class )
+    public LocalDateTime getDateCreated() { 
         return dateCreated; 
     } 
  
-    public void setDateCreated(long dateCreated) { 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    public void setDateCreated(LocalDateTime dateCreated) { 
         this.dateCreated = dateCreated; 
-    } 
- 
+    }
 } 
  
