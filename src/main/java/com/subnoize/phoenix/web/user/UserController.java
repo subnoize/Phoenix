@@ -2,8 +2,6 @@ package com.subnoize.phoenix.web.user;
 
 import java.security.Principal;
 
-import javax.annotation.PostConstruct;
-
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,11 +26,6 @@ public class UserController {
 
 	@Autowired
 	private PasswordEncoder passwdenc;
-	
-	@PostConstruct
-	public void init() {
-		logger.info("Log line {} !","blah");
-	}
 
 	// https://www.thymeleaf.org/doc/articles/springmvcaccessdata.html
 
