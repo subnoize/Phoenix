@@ -23,6 +23,8 @@
 				</div>
 				<div sec:authorize="isAuthenticated()">
 					<h1>Welcome to Phoenix Administration!</h1>
+					
+					Welcome, <span sec:authentication="name">Bob</span>. You are now signed in.
 				</div>
 			</div>
 		</div>
