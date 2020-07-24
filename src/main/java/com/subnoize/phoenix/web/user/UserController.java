@@ -3,6 +3,8 @@ package com.subnoize.phoenix.web.user;
 import java.security.Principal;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,8 @@ import com.subnoize.phoenix.aws.dynamodb.UserDAO;
 @RequestMapping(value = "/user")
 public class UserController {
 
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+	
 	@Autowired
 	private UserDAO userDAO;
 
@@ -49,9 +53,13 @@ public class UserController {
 					
 					userDAO.updatePassword(user,confirmPassword);
 					mav.setViewName("/services/home.html");
+					
+					logger.info("{} changed their password.", principal.getName());
 				} else {
 					mav.setViewName("/error.html");
 					mav.addObject("error_message", "Incorrect Password.");
+					
+					logger.info("{} entered the incorrect password.", principal.getName());
 				}
 			}
 
