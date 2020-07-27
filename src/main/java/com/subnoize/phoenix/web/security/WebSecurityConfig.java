@@ -38,7 +38,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/administration/**").hasRole("ADMIN")
 		.antMatchers("/test/whoami").hasAuthority("READ_PRIVILEGE");
 		
+
+		http.authorizeRequests().antMatchers("/myPage").permitAll();
+		
 		http.authorizeRequests().anyRequest().authenticated();
+		
+
 	}
 
 	/**

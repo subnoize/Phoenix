@@ -19,6 +19,9 @@ td {
   margin: auto;
   margin-top: 10px;
   width: 900px;
+}
+
+#sn_page #sn_frame {
   border: 1px solid #EEE;
   padding: 1px;
 }
@@ -41,7 +44,6 @@ td {
 #sn_page #sn_footer {
 	flex: 0 1 auto;
 	text-align: center;
-	border: 1px solid #EEE;
 }
 
 #sn_page #sn_body > #sn_menu {

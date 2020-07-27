@@ -1,41 +1,35 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
 <body th:fragment="menu">
-<div class="container">
-	<div id="sn_menu">
+	<div>
 		<div>
-			<div>
-				<a th:href="@{/}"><input class="menuButton" type="submit"
-					value="Home"></a>
-			</div>
-			<div sec:authorize="isAuthenticated()">
-				<a sec:authorize="hasRole('ROLE_ADMIN')"
-					th:href="@{/administration/home}"><input class="menuButton"
-					type="submit" value="Account"></a> <a
-					sec:authorize="hasRole('ROLE_USER')" th:href="@{/services/home}"><input
-					class="menuButton" type="submit" value="Account"></a>
-					<div sec:authorize="hasRole('ROLE_ADMIN')">
-					<a th:href="@{/administration/createUserHTML}"><input class="menuButton" type="submit" value="Create a User" /></a>
-					<a th:href="@{/administration/editUserInitialPage}"><input class="menuButton" type="submit" value="Edit a User" /></a>
-					</div>
-			</div>
+			<a th:href="@{/}"><input class="menuButton" type="submit"
+				value="Home"></a>
 		</div>
-		<div>
-			<div>
-				<a href="#" th:href="@{/login}"
-					sec:authorize="isAuthenticated() == false"><input
-					class="menuButton" type="submit" value="Login"></a>
-				<form th:action="@{/logout}" method="post"
-					sec:authorize="isAuthenticated()">
-					<input class="menuButton" type="submit" value="Sign Out" />
-				</form>
+		<div sec:authorize="isAuthenticated()">
+			<a sec:authorize="hasRole('ROLE_ADMIN')"
+				th:href="@{/administration/home}"><input class="menuButton"
+				type="submit" value="Account"></a> <a
+				sec:authorize="hasRole('ROLE_USER')" th:href="@{/services/home}"><input
+				class="menuButton" type="submit" value="Account"></a>
+			<div sec:authorize="hasRole('ROLE_ADMIN')">
+				<a th:href="@{/administration/createUserHTML}"><input
+					class="menuButton" type="submit" value="Create a User" /></a> <a
+					th:href="@{/administration/editUserInitialPage}"><input
+					class="menuButton" type="submit" value="Edit a User" /></a>
 			</div>
 		</div>
 	</div>
-</div>
+	<div>
+		<div>
+			<a href="#" th:href="@{/login}"
+				sec:authorize="isAuthenticated() == false"><input
+				class="menuButton" type="submit" value="Login"></a>
+			<form th:action="@{/logout}" method="post"
+				sec:authorize="isAuthenticated()">
+				<input class="menuButton" type="submit" value="Sign Out" />
+			</form>
+		</div>
+	</div>
 </body>
 </html>

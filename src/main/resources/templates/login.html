@@ -2,41 +2,32 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="https://www.thymeleaf.org"
 	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<head>
-<title>Phoenix Administration</title>
+<head th:replace="layout/main :: head(title=~{this :: title})">
+<title>Phoenix: Please log in...</title>
 </head>
-
 <body>
+	<div th:insert="layout/main :: sn_page(~{ :: #page-content})">
+		<div id="page-content">
+			<div th:if="${param.error}">Invalid username and password.</div>
+			<div th:if="${param.logout}">You have been logged out.</div>
+			<form id="sn_login" th:action="@{/login}" method="post">
+				<div>
+					<label> User Name: <input type="text" name="username"
+						required />
+					</label>
+				</div>
+				<div>
+					<label> Password: <input type="password" name="password"
+						required />
+					</label>
+				</div>
+				<div>
+					<input class="standardButton" type="submit" value="Sign In" />
+				</div>
+			</form>
+			<br /> <a th:href="@{/home}"><input class="standardButton"
+				type="submit" value="Go Back" /></a>
 
-	<div id="sn_page">
-		<div id="sn_header">
-			<div th:replace="fragments/header :: header">My header</div>
-		</div>
-		<div id="sn_body">
-
-			<div id="sn_content">
-				<div th:if="${param.error}">Invalid username and password.</div>
-				<div th:if="${param.logout}">You have been logged out.</div>
-				<form id="sn_login" th:action="@{/login}" method="post">
-					<div>
-						<label> User Name: <input type="text" name="username" required/>
-						</label>
-					</div>
-					<div>
-						<label> Password: <input type="password" name="password" required/>
-						</label>
-					</div>
-					<div>
-						<input class="standardButton" type="submit" value="Sign In" />
-					</div>
-				</form>
-				<br/>
-				<a th:href="@{/home}"><input class="standardButton" type="submit" value="Go Back" /></a>
-
-			</div>
-		</div>
-		<div id="sn_footer">
-			<div th:replace="fragments/footer :: footer">My footer</div>
 		</div>
 	</div>
 </body>

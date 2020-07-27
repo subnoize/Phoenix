@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--/* Head takes 3 arguments that are fragments */-->
+<head th:fragment="head">
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!--/*  Title will be replaced by their respective titles in the calling template. */-->
+<th:block th:if="${title != null}">
+	<title th:replace="${title}">My Page Title</title>
+</th:block>
+<th:block th:if="${title == null}">
+	<title>Pheonix Administration</title>
+</th:block>
+
+
+<!--/* Default links; can be replaced by the calling templates */-->
+<link rel="stylesheet" href="/style/base.css" media="screen"
+	th:href="@{/style/base.css}" />
+
+<!--/* Per-page placeholder for additional links */-->
+<th:block th:if="${links != null}">
+	<th:block th:replace="${links}" />
+</th:block>
+
+<!--/* Default scripts; can be replaced by the calling templates */-->
+<script src="/webjars/jquery/3.5.1/jquery.min.js"
+	th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+<script src="/webjars/jquery-ui/1.12.1/jquery-ui.min.js"
+	th:src="@{/webjars/jquery-ui/1.12.1/jquery-ui.min.js}"></script>
+
+<!--/* Per-page placeholder for additional scripts */-->
+<th:block th:if="${scripts != null}">
+	<th:block th:replace="${scripts}" />
+</th:block>
+</head>
+<body>
+	<div id="sn_page" th:fragment="sn_page(content)">
+		<div id="sn_frame">
+			<div id="sn_header">
+				<div th:replace="fragments/header :: header">My header</div>
+			</div>
+			<div id="sn_body">
+				<div id="sn_menu">
+					<div th:replace="fragments/menu :: menu">My menu</div>
+				</div>
+				<div id="sn_content">
+					<th:block th:replace="${content}" />
+				</div>
+			</div>
+		</div>
+		<!--/* Footer fragment */-->
+		<div id="sn_footer">
+			<div th:replace="fragments/footer :: footer">My footer</div>
+		</div>
+	</div>
+</body>
+</html>
