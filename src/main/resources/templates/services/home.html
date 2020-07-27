@@ -2,40 +2,32 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="https://www.thymeleaf.org"
 	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<head>
-<title>Phoenix Administraion</title>
+<head th:replace="layout/main :: head(title=~{this :: title})">
+<title>Phoenix: Services</title>
 </head>
 <body>
-	<div id="sn_page">
-		<div id="sn_header">
-			<div th:replace="fragments/header :: header">My header</div>
-		</div>
-		<div id="sn_body">
-			<div id="sn_menu">
-				<div th:replace="fragments/menu :: menu">My menu</div>
-			</div>
-			<div id="sn_content">
-				<h1>Hello!</h1>
-				<div sec:authorize="hasRole('ROLE_ADMIN')">You are Admin!</div>
-				<div sec:authorize="hasRole('ROLE_USER')">You are User!</div>
+	<div th:insert="layout/main :: sn_page(~{ :: #page-content})">
+		<div id="page-content">
+			<h1>Hello!</h1>
+			<div sec:authorize="hasRole('ROLE_ADMIN')">You are Admin!</div>
+			<div sec:authorize="hasRole('ROLE_USER')">You are User!</div>
 
-				Logged user: <span sec:authentication="name">Bob</span> Roles: <span
-					sec:authentication="principal.authorities">[ROLE_USER,
-					ROLE_ADMIN]</span>
-				<div id="dateCreated">Your account was created on: <span></span></div>
-				<br/>
-				<div sec:authorize="hasRole('ROLE_ADMIN')">
-					<a th:href="@{/administration/admins}"><input class="standardButton" type="submit" value="Admin Tools" /></a>
-				</div>
-				<div sec:authorize="hasRole('ROLE_USER')">
-					<a th:href="@{/services/users}"><input class="standardButton" type="submit" value="Edit Account" /></a>
-				</div>
+			Logged user: <span sec:authentication="name">Bob</span> Roles: <span
+				sec:authentication="principal.authorities">[ROLE_USER,
+				ROLE_ADMIN]</span>
+			<div id="dateCreated">
+				Your account was created on: <span></span>
 			</div>
-		</div>
-		<div id="sn_footer">
-			<div th:replace="fragments/footer :: footer">My footer</div>
+			<br />
+			<div sec:authorize="hasRole('ROLE_ADMIN')">
+				<a th:href="@{/administration/admins}"><input
+					class="standardButton" type="submit" value="Admin Tools" /></a>
+			</div>
+			<div sec:authorize="hasRole('ROLE_USER')">
+				<a th:href="@{/services/users}"><input class="standardButton"
+					type="submit" value="Edit Account" /></a>
+			</div>
 		</div>
 	</div>
-
 </body>
 </html>
