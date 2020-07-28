@@ -5,30 +5,26 @@
 <head th:replace="layout/main :: head(title=~{this :: title})">
 <title>Phoenix: Please log in...</title>
 </head>
-<body>
-	<div th:insert="layout/main :: sn_page(~{ :: #page-content})">
-		<div id="page-content">
-			<div th:if="${param.error}">Invalid username and password.</div>
-			<div th:if="${param.logout}">You have been logged out.</div>
-			<form id="sn_login" th:action="@{/login}" method="post">
-				<div>
-					<label> User Name: <input type="text" name="username"
-						required />
-					</label>
-				</div>
-				<div>
-					<label> Password: <input type="password" name="password"
-						required />
-					</label>
-				</div>
-				<div>
-					<input class="standardButton" type="submit" value="Sign In" />
-				</div>
-			</form>
-			<br /> <a th:href="@{/home}"><input class="standardButton"
-				type="submit" value="Go Back" /></a>
-
-		</div>
+<body th:insert="layout/main :: sn_page(~{ :: #page-content})">
+	<script>
+		$(function() {
+			$("#signInBtn").click(function() {
+				$(this.form).submit();
+			});
+		});
+	</script>
+	<div id="page-content">
+		<h3 class="sn_err_text" th:if="${param.error}">
+			Oops! Invalid username and/or password. Try again...<span
+				th:text="${param.error}">?</span>
+		</h3>
+		<h3 th:if="${param.logout}">Good Bye! You have been logged out...</h3>
+		<p th:if="${param.error == null && param.logout == null}">Please
+			enter your username and password below to sign in. If you have
+			forgotten your username or password then contact Administration.</p>
+		<div
+			th:insert="fragments/forms/credentials :: credentialsForm(@{/login},'Sign In','Sign In')">sign
+			in form</div>
 	</div>
 </body>
 </html>

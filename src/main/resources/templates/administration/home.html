@@ -5,19 +5,17 @@
 <head th:replace="layout/main :: head(title=~{this :: title})">
 <title>Phoenix: System Administration</title>
 </head>
-<body>
-	<div th:insert="layout/main :: sn_page(~{ :: #page-content})">
-		<div id="page-content">
-			<h1>Administration Home</h1>
-			<div sec:authorize="hasRole('ROLE_ADMIN')">Greetings Admin!</div>
+<body th:insert="layout/main :: sn_page(~{ :: #page-content})">
+	<div id="page-content">
+		<h1>Administration Home</h1>
+		<div sec:authorize="hasRole('ROLE_ADMIN')">Greetings Admin!</div>
 
-			Logged user: <span sec:authentication="name">Bob</span> Roles: <span
-				sec:authentication="principal.authorities">[ROLE_USER,
-				ROLE_ADMIN]</span> <br /> <a th:href="@{/administration/createUserHTML}"><input
-				class="standardButton" type="submit" value="Create a User" /></a> <br />
-			<a th:href="@{/administration/editUserInitialPage}"><input
-				class="standardButton" type="submit" value="Edit a User" /></a>
-		</div>
+		Logged user: <span sec:authentication="name">Bob</span> Roles: <span
+			sec:authentication="principal.authorities">[ROLE_USER,
+			ROLE_ADMIN]</span> <br /> <a th:href="@{/administration/createUserHTML}"><input
+			class="standardButton" type="submit" value="Create a User" /></a> <br />
+		<a th:href="@{/administration/editUserInitialPage}"><input
+			class="standardButton" type="submit" value="Edit a User" /></a>
 	</div>
 </body>
 </html>

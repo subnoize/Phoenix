@@ -3,22 +3,20 @@
 	xmlns:th="https://www.thymeleaf.org"
 	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head th:replace="layout/main :: head(title=~{this :: title})">
-<title>Welcome to Phoenix Administration</title>
+<title>Phoenix: Welcome</title>
 </head>
-<body>
-	<div th:insert="layout/main :: sn_page(~{ :: #page-content})">
-		<div id="page-content">
-			<div sec:authorize="isAuthenticated() == false">
-				<h1>Welcome to Phoenix Administration!</h1>
+<body th:insert="layout/main :: sn_page(~{ :: #page-content})">
+	<div id="page-content">
+		<div sec:authorize="isAuthenticated() == false">
+			<h1>Welcome to Phoenix Administration!</h1>
 
-				Please sign in to get started.
-			</div>
-			<div sec:authorize="isAuthenticated()">
-				<h1>Welcome to Phoenix Administration!</h1>
+			Please sign in to get started.
+		</div>
+		<div sec:authorize="isAuthenticated()">
+			<h1>Welcome to Phoenix Administration!</h1>
 
-				Welcome, <span sec:authentication="name">Bob</span>. You are now
-				signed in.
-			</div>
+			Welcome, <span sec:authentication="name">Bob</span>. You are now
+			signed in.
 		</div>
 	</div>
 </html>

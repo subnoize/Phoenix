@@ -1,35 +1,63 @@
 <!DOCTYPE html>
 <html>
 <body th:fragment="menu">
-	<div>
-		<div>
-			<a th:href="@{/}"><input class="menuButton" type="submit"
-				value="Home"></a>
-		</div>
-		<div sec:authorize="isAuthenticated()">
-			<a sec:authorize="hasRole('ROLE_ADMIN')"
-				th:href="@{/administration/home}"><input class="menuButton"
-				type="submit" value="Account"></a> <a
-				sec:authorize="hasRole('ROLE_USER')" th:href="@{/services/home}"><input
-				class="menuButton" type="submit" value="Account"></a>
-			<div sec:authorize="hasRole('ROLE_ADMIN')">
-				<a th:href="@{/administration/createUserHTML}"><input
-					class="menuButton" type="submit" value="Create a User" /></a> <a
-					th:href="@{/administration/editUserInitialPage}"><input
-					class="menuButton" type="submit" value="Edit a User" /></a>
+	<script>
+		$(function() {
+			$("#sn_flyout_menu").menu();
+		});
+	</script>
+	<ul id="sn_flyout_menu">
+
+		<li><div><a th:href="@{/}">Home</a></div></li>
+		
+		<li sec:authorize="isAuthenticated() == false">
+			<div>
+				<a href="#" th:href="@{/login}">Login</a>
 			</div>
-		</div>
-	</div>
-	<div>
-		<div>
-			<a href="#" th:href="@{/login}"
-				sec:authorize="isAuthenticated() == false"><input
-				class="menuButton" type="submit" value="Login"></a>
-			<form th:action="@{/logout}" method="post"
-				sec:authorize="isAuthenticated()">
-				<input class="menuButton" type="submit" value="Sign Out" />
-			</form>
-		</div>
-	</div>
+		</li>
+
+		<li sec:authorize="isAuthenticated() && hasRole('ROLE_ADMIN')">
+			<div><a th:href="@{/administration/home}">Administration</a></div>
+			<ul>
+				<li>
+					<div>Users</div>
+					<ul>
+						<li><div><a th:href="@{/administration/createUserHTML}">Create&nbsp;User</a></div></li>
+						<li><div><a th:href="@{/administration/editUserInitialPage}">Edit&nbsp;User</a></div></li>
+					</ul>
+				</li>
+				<li>
+					<div>Security</div>
+					<ul>
+						<li><div>Roles</div></li>
+						<li><div>Groups<div></li>
+					</ul>
+				</li>
+				<li>
+					<div>Configuration</div>
+				</li>
+			</ul>
+		</li>
+		
+		<li sec:authorize="isAuthenticated()">
+			<div><a th:href="@{/services/home}">Account</a></div>
+			<ul>
+				<li>
+					<div><a th:href="@{/services/changePassword}">Change Password</a></div>
+				</li>
+				<li>
+					<div><a th:href="@{/services/users}">Preferences</a></div>
+				</li>
+			</ul>
+		</li>
+
+		<li sec:authorize="isAuthenticated()">
+			<div>
+				<form th:action="@{/logout}" method="post" id="signout">
+					<a onclick="$('#signout').submit()">Sign Out</a>
+				</form>
+			</div>
+		</li>
+	</ul>
 </body>
 </html>

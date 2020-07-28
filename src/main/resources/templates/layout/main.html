@@ -13,10 +13,13 @@
 	<title>Pheonix Administration</title>
 </th:block>
 
-
 <!--/* Default links; can be replaced by the calling templates */-->
 <link rel="stylesheet" href="/style/base.css" media="screen"
 	th:href="@{/style/base.css}" />
+<link rel="stylesheet" href="/webjars/jquery-ui/1.12.1/jquery-ui.min.css" media="screen"
+	th:href="@{/webjars/jquery-ui/1.12.1/jquery-ui.min.css}" />
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
 
 <!--/* Per-page placeholder for additional links */-->
 <th:block th:if="${links != null}">
@@ -33,6 +36,7 @@
 <th:block th:if="${scripts != null}">
 	<th:block th:replace="${scripts}" />
 </th:block>
+
 </head>
 <body>
 	<div id="sn_page" th:fragment="sn_page(content)">
