@@ -2,17 +2,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="https://www.thymeleaf.org"
 	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<head th:replace="layout/main :: head(title=~{this :: title})">
+<head
+	th:replace="layout/main :: head(title=~{this :: title}, scripts=~{this :: .custom-script})">
 <title>Phoenix: Please log in...</title>
+<script class="custom-script">
+	$(function() {
+		$("#signInBtn").click(function() {
+			$(this.form).submit();
+		});
+	});
+</script>
 </head>
 <body th:insert="layout/main :: sn_page(~{ :: #page-content})">
-	<script>
-		$(function() {
-			$("#signInBtn").click(function() {
-				$(this.form).submit();
-			});
-		});
-	</script>
 	<div id="page-content">
 		<h3 class="sn_err_text" th:if="${param.error}">
 			Oops! Invalid username and/or password. Try again...<span
