@@ -2,42 +2,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="https://www.thymeleaf.org"
 	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<head>
-<title>Phoenix Administration</title>
+<head
+	th:replace="layout/main :: head(title=~{this :: title}, scripts=~{this :: .custom-script})">
+<title>Phoenix: Please log in...</title>
+<script class="custom-script">
+	$(function() {
+		$("#signInBtn").click(function() {
+			$(this.form).submit();
+		});
+	});
+</script>
 </head>
-
-<body>
-
-	<div id="sn_page">
-		<div id="sn_header">
-			<div th:replace="fragments/header :: header">My header</div>
-		</div>
-		<div id="sn_body">
-
-			<div id="sn_content">
-				<div th:if="${param.error}">Invalid username and password.</div>
-				<div th:if="${param.logout}">You have been logged out.</div>
-				<form id="sn_login" th:action="@{/login}" method="post">
-					<div>
-						<label> User Name: <input type="text" name="username" required/>
-						</label>
-					</div>
-					<div>
-						<label> Password: <input type="password" name="password" required/>
-						</label>
-					</div>
-					<div>
-						<input class="standardButton" type="submit" value="Sign In" />
-					</div>
-				</form>
-				<br/>
-				<a th:href="@{/home}"><input class="standardButton" type="submit" value="Go Back" /></a>
-
-			</div>
-		</div>
-		<div id="sn_footer">
-			<div th:replace="fragments/footer :: footer">My footer</div>
-		</div>
+<body th:insert="layout/main :: sn_page(~{ :: #page-content})">
+	<div id="page-content">
+		<h3 class="sn_err_text" th:if="${param.error}">
+			Oops! Invalid username and/or password. Try again...<span
+				th:text="${param.error}">?</span>
+		</h3>
+		<h3 th:if="${param.logout}">Good Bye! You have been logged out...</h3>
+		<p th:if="${param.error == null && param.logout == null}">Please
+			enter your username and password below to sign in. If you have
+			forgotten your username or password then contact Administration.</p>
+		<div
+			th:insert="fragments/forms/credentials :: credentialsForm(@{/login},'Sign In','Sign In')">sign
+			in form</div>
 	</div>
 </body>
 </html>

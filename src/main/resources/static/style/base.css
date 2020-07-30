@@ -1,29 +1,36 @@
+html {
+	height: 100%;
+}
+
 body {
 	font-family: Arial, Helvetica, Verdana;
 	font-size: 12px;
 	text-align: left;
 	margin: 0 auto;
-}
-
-th {
-	border: 2px solid black;
-}
-
-td {
-	border: 1px solid black;
+	display: flex;
+	flex-direction: column;
+	height: calc(100% - 20px);
 }
 
 #sn_page {
-  display: flex;
-  flex-flow: column;
-  margin: auto;
-  margin-top: 10px;
-  width: 900px;
-  border: 1px solid #EEE;
-  padding: 1px;
+	/*margin: auto;*/
+	/*margin-top: 10px;*/
+	/*width: 900px;*/
+	flex: 1;
+	min-height: 100%;
 }
 
-#sn_page #sn_header {
+#sn_page #sn_footer {
+	text-align: center;
+}
+
+#sn_page #sn_frame {
+	/*border: 1px solid #EEE;*/
+	/*padding: 1px;*/
+	min-height: 100%;
+}
+
+#sn_page #sn_frame #sn_header {
 	background-color: #737373;
 	color: white;
 	flex: 0 1 100px;
@@ -31,44 +38,45 @@ td {
 	text-align: center;
 	padding: 11px;
 	text-shadow: 2px 2px 4px black;
-	
+	border-radius: 0px 0px 15px 0px;
+	margin-right: 2px
 }
 
-#sn_page #sn_body {
+#sn_page #sn_frame #sn_body {
 	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	min-height: 100%;
 }
 
-#sn_page #sn_footer {
-	flex: 0 1 auto;
-	text-align: center;
-	border: 1px solid #EEE;
+#sn_page #sn_frame #sn_body>#sn_menu {
+	flex: 0 0 190px;
 }
 
-#sn_page #sn_body > #sn_menu {
-	background-color: #b3b3b3;
-	width: 215px;
-	text-align: center;
-	
+#sn_page #sn_frame #sn_body>#sn_content {
+	margin-left: 15px;
+	margin-right: 15px;
+	min-height: 100%;
+	flex: 1;
 }
 
-#sn_page #sn_body > #sn_content {
-	width: calc(100% - 215px);
-	padding: 5px;
+#sn_flyout_menu {
+	border-top: 0px;
+	border-radius: 0px 0px 15px 0px;
+	padding-bottom: 15px;
 }
 
-#sn_login {
-	
+#sn_flyout_menu a {
+	font-weight:bolder;
+	text-decoration: none;
+	display:block;
+	margin-left: 5px;
 }
 
-.standardButton {
-	border-radius: 5px;
-	box-shadow: 1px 1px 2px grey;
+fieldset {
+	display: inline;
 }
 
-.menuButton {
-	border-radius: 5px;
-	box-shadow: 1px 1px 5px grey;
-	width: 85%;
-	margin: 8px;
-	margin-top: 10px;
+.sn_err_text {
+	color: #dd0000;
 }

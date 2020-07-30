@@ -2,52 +2,49 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="https://www.thymeleaf.org"
 	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<head>
-<title>Admins</title>
+<head th:replace="layout/main :: head(title=~{this :: title})">
+<title>Phoenix: Search Users</title>
 </head>
-<body>
-	<div id="sn_page">
-		<div id="sn_header">
-			<div th:replace="fragments/header :: header">My header</div>
+<body th:insert="layout/main :: sn_page(~{ :: #page-content})">
+	<div id="page-content">
+
+
+
+		<h1>Edit User</h1>
+		<div id="userList">
+			<form th:action="@{/administration/searchUserList}" method="POST">
+				<label> User Name: <input type="text" name="username"
+					required />
+				</label>
+				<button class="tableButton" type="submit">Search</button>
+			</form>
 		</div>
-		<div id="sn_body">
-			<div id="sn_menu">
-				<div th:replace="fragments/menu :: menu">My menu</div>
-			</div>
-			<div id="sn_content">
-				<h1>Edit User</h1>
-				<div id="userList">
-					<form th:action="@{/administration/searchUserList}" method="POST">
-						<label> User Name: <input type="text" name="username"
-							required />
-						</label>
-						<button class="tableButton" type="submit">Search</button>
-					</form>
-				</div>
-				<br />
-				<div id="userList">
-					<table id="userTable">
-						<tr>
-							<th>Username</th>
-							<th>Date Created</th>
-							<th>Enabled</th>
-							<th>Expired</th>
-							<th>Locked</th>
-						</tr>
-						<tr th:each="userList: ${userList}">
-							<td th:text="${userList.username}">?</td>
-							<td th:text="${userList.dateCreated}">?</td>
-							<td th:text="${userList.enabled}">?</td>
-							<td th:text="${userList.expired}">?</td>
-							<td th:text="${userList.locked}">?</td>
-							<td><form th:action="@{/administration/editUserStartup}" method="POST">
-									<input type="hidden" name="username" th:value="${userList.username}" style="display: none;">
-									<button class="tableButton" type="submit">Edit</button>
-							</form></td>
-						</tr>
-					</table>
-				</div>
-			</div>
+		<br />
+		<div id="userList">
+			<table id="userTable">
+				<tr>
+					<th>Username</th>
+					<th>Date Created</th>
+					<th>Enabled</th>
+					<th>Expired</th>
+					<th>Locked</th>
+				</tr>
+				<tr th:each="userList: ${userList}">
+					<td th:text="${userList.username}">?</td>
+					<td th:text="${userList.dateCreated}">?</td>
+					<td th:text="${userList.enabled}">?</td>
+					<td th:text="${userList.expired}">?</td>
+					<td th:text="${userList.locked}">?</td>
+					<td><form th:action="@{/administration/editUserStartup}"
+							method="POST">
+							<input type="hidden" name="username"
+								th:value="${userList.username}" style="display: none;">
+							<button class="tableButton" type="submit">Edit</button>
+						</form></td>
+				</tr>
+			</table>
+
+
 
 		</div>
 		<div id="sn_footer">
