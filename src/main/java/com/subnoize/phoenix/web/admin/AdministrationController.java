@@ -55,7 +55,7 @@ public class AdministrationController {
 				mav.addObject("user", user);
 				mav.addObject("error_message", "User already exists.");
 			} else {
-				mav.setViewName("/administration/setRole.html");
+				mav.setViewName("/administration/home.html");
 				userDAO.create(user);
 				user.setPassword("*****************");
 				mav.addObject("user", user);
