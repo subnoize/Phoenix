@@ -7,7 +7,6 @@
 </head>
 <body th:insert="layout/main :: sn_page(~{ :: #page-content})">
 	<div id="page-content">
-
 		<h1>User successfully created! Please give them a role!</h1>
 
 		<form th:action="@{/administration/createUserRole}" method="POST">

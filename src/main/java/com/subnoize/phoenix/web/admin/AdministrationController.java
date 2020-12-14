@@ -42,6 +42,18 @@ public class AdministrationController {
 
 		return mav;
 	}
+	
+	@PostMapping(path = "/searchUserRoleList")
+	public ModelAndView searchUserRoleTable(SecurityContextHolderAwareRequestWrapper requestWrapper, String username)
+			throws Exception {
+		ModelAndView mav = new ModelAndView();
+		if (requestWrapper.isUserInRole("ADMIN")) {
+			mav.setViewName("/administration/editRoleList.html");
+			mav.addObject("userList", userDAO.listUsersByUsername(username));
+		}
+
+		return mav;
+	}
 
 	@PostMapping(path = "/createUser")
 	public ModelAndView createUser(SecurityContextHolderAwareRequestWrapper requestWrapper, User user)
@@ -55,7 +67,7 @@ public class AdministrationController {
 				mav.addObject("user", user);
 				mav.addObject("error_message", "User already exists.");
 			} else {
-				mav.setViewName("/administration/setRole.html");
+				mav.setViewName("/administration/home.html");
 				userDAO.create(user);
 				user.setPassword("*****************");
 				mav.addObject("user", user);
@@ -82,6 +94,18 @@ public class AdministrationController {
 		ModelAndView mav = new ModelAndView();
 		if (requestWrapper.isUserInRole("ADMIN")) {
 			mav.setViewName("/administration/userEdit.html");
+			User user = userDAO.retrieve(username);
+			mav.addObject("user", user);
+		}
+		return mav;
+	}
+	
+	@PostMapping(path = "/editUserRoleStartup")
+	public ModelAndView editUserRoleInit(SecurityContextHolderAwareRequestWrapper requestWrapper, String username)
+			throws Exception {
+		ModelAndView mav = new ModelAndView();
+		if (requestWrapper.isUserInRole("ADMIN")) {
+			mav.setViewName("/administration/editUserRole.html");
 			User user = userDAO.retrieve(username);
 			mav.addObject("user", user);
 		}

@@ -3,16 +3,14 @@
 	xmlns:th="https://www.thymeleaf.org"
 	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head th:replace="layout/main :: head(title=~{this :: title})">
-<title>Phoenix: Search Users</title>
+<title>Phoenix: Set User Role</title>
 </head>
 <body th:insert="layout/main :: sn_page(~{ :: #page-content})">
 	<div id="page-content">
 
-
-
-		<h1>Edit User</h1>
+		<h1>Edit User Role</h1>
 		<div id="userList">
-			<form th:action="@{/administration/searchUserList}" method="POST">
+			<form th:action="@{/administration/searchUserRoleList}" method="POST">
 				<label> User Name: <input type="text" name="username"
 					 />
 				</label>
@@ -24,18 +22,10 @@
 			<table id="userTable">
 				<tr>
 					<th>Username</th>
-					<th>Date Created</th>
-					<th>Enabled</th>
-					<th>Expired</th>
-					<th>Locked</th>
 				</tr>
 				<tr th:each="userList: ${userList}">
 					<td th:text="${userList.username}">?</td>
-					<td th:text="${userList.dateCreated}">?</td>
-					<td th:text="${userList.enabled}">?</td>
-					<td th:text="${userList.expired}">?</td>
-					<td th:text="${userList.locked}">?</td>
-					<td><form th:action="@{/administration/editUserStartup}"
+					<td><form th:action="@{/administration/editUserRoleStartup}"
 							method="POST">
 							<input type="hidden" name="username"
 								th:value="${userList.username}" style="display: none;">
@@ -43,15 +33,12 @@
 						</form></td>
 				</tr>
 			</table>
-
+		</div>
 		<br/>
-		<a th:href="@{/administration/editUserInitialPage}"><input
+		<a th:href="@{/administration/home}"><input
 			class="standardButton" type="submit" value="Go Back" /></a>
-
-		</div>
-		<div id="sn_footer">
-			<div th:replace="fragments/footer :: footer">My footer</div>
-		</div>
 	</div>
+
+
 </body>
 </html>
